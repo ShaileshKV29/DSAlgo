@@ -27,11 +27,11 @@ int taylor_series(int x, int n)
         return taylor_series(x, n - 1) + (pow(x, n)/fact(n));
 }
 
-int taylor_series_better(int x, int n)
+double taylor_series_better(int x, int n)
 {
-    static int pow = 1;
-    static int fact = 1;
-    int r;
+    static double pow = 1;
+    static double fact = 1;
+    double r;
 
     if(n == 0)
         return 1;
@@ -44,7 +44,7 @@ int taylor_series_better(int x, int n)
 
 int main()
 {
-    cout << taylor_series_better(5, 3);
+    cout << taylor_series_better(1, 10);
 
     return 0;
 }
