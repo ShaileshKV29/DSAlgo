@@ -17,36 +17,8 @@ class Sparse
         int num;
         Element *e;
 
-        void create()
-        {
-            cout << "Enter Dimension: ";
-            cin >> this->m >> this->n;
-            cout << "Enter Number of Non Zero Elements: ";
-            cin >> this->num;
-            e = new Element[this->num];
-            cout << "Enter all Elements" << endl;
-            for(int i = 0; i < this->num; i++)
-            {
-                cin >> e[i].i >> e[i].j >> e[i].x;
-            }
-        }
-
-        void display()
-        {
-            int i, j, k = 0;
-            for(i = 0; i < this->m; i++)
-            {
-                for(j = 0; j < this->n; j++)
-                {
-                    if(i == e[k].i && j == e[k].j)
-                        cout << e[k++].x << " ";
-                    else
-                        cout << "0 ";
-                }
-                cout << endl;
-            }
-        }
-
+        friend ostream & operator <<(ostream &o, Sparse s);
+        friend istream & operator >>(istream &c, Sparse * s);
         friend Sparse operator+(Sparse s1, Sparse s2);
 
         ~Sparse()
@@ -54,6 +26,40 @@ class Sparse
             delete []e;
         }
 };
+
+ostream & operator << (ostream &o, Sparse s)
+{
+    int i, j, k = 0;
+    for(i = 0; i < s.m; i++)
+    {
+        for(j = 0; j < s.n; j++)
+        {
+            if(i == s.e[k].i && j == s.e[k].j)
+                o << s.e[k++].x << " ";
+            else
+                o << "0 ";
+        }
+        o << endl;
+    }
+
+    return o;
+}
+
+istream & operator >>(istream &c, Sparse * s)
+{
+    cout << "Enter Dimension: ";
+    c >> s->m >> s->n;
+    cout << "Enter Number of Non Zero Elements: ";
+    c >> s->num;
+    s->e = new Element[s->num];
+    cout << "Enter all Elements" << endl;
+    for(int i = 0; i < s->num; i++)
+    {
+        c >> s->e[i].i >> s->e[i].j >> s->e[i].x;
+    }
+
+    return c;
+}
 
 Sparse operator+(Sparse s1, Sparse s2)
 {
@@ -99,15 +105,16 @@ int main()
     // int B[7][3] = {{5,6,6}, {2,2,3}, {2,5,5}, {3,3,2}, {3,6,7}, {4,4,9}, {5,1,8}};
 
     Sparse s1, s2, s;
-    s1.create();
-    s2.create();
-    s1.display();
-    cout << endl;
-    s2.display();
+    cin >> &s1;
+    // s2.create();
+    // s1.display();
+    cout << s1;
+    // cout << endl;
+    // s2.display();
 
-    s = s1 + s2;
-    cout << endl;
-    s.display();
+    // s = s1 + s2;
+    // cout << endl;
+    // s.display();
 
     return 0;
 }
