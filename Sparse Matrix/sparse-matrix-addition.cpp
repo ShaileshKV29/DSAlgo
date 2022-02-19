@@ -28,6 +28,8 @@ class Sparse
 };
 
 
+
+
 ostream & operator << (ostream &o, Sparse s)
 {
     int i, j, k = 0;
