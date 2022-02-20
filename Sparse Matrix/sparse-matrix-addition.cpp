@@ -19,16 +19,13 @@ class Sparse
 
         friend ostream & operator <<(ostream &o, Sparse s);
         friend istream & operator >>(istream &c, Sparse * s);
-        friend Sparse operator+(Sparse s1, Sparse s2);
+        Sparse operator+(Sparse &s1);
 
         ~Sparse()
         {
             delete []e;
         }
 };
-
-
-
 
 ostream & operator << (ostream &o, Sparse s)
 {
@@ -64,42 +61,43 @@ istream & operator >>(istream &c, Sparse * s)
     return c;
 }
 
-Sparse operator+(Sparse s1, Sparse s2)
+Sparse Sparse::operator+(Sparse &s)
 {
-    Sparse sum;
-    if(s1.m != s2.m && s1.n != s2.n)
+    Sparse *sum;
+    if(m != s.m && n != s.n)
     {
-        cout << "Inside IF" << endl;
-        return sum;
+        return *sum;
     }
-    sum.m = s1.m;
-    sum.n = s1.n;
-    sum.e = new Element[s1.num + s2.num];
+    sum->m = s.m;
+    sum->n = s.n;
+    sum->e = new Element[num + s.num];
 
     int i = 0, j = 0, k = 0;
-    while( i < s1.num && j < s2.num)
+    while( i < num && j < s.num)
     {
-        if(s1.e[i].i < s2.e[j].i)
-            sum.e[k++] = s1.e[i++];
-        else if(s1.e[i].i > s2.e[j].i)
-            sum.e[k++] = s2.e[j++];
+        if(e[i].i < s.e[j].i)
+            sum->e[k++] = e[i++];
+        else if(e[i].i > s.e[j].i)
+            sum->e[k++] = s.e[j++];
         else
         {
-            if(s1.e[i].j < s2.e[j].j)
-                sum.e[k++] = s1.e[i++];
-            else if(s1.e[i].j > s2.e[j].j)
-                sum.e[k++] = s2.e[j++];
+            if(e[i].j < s.e[j].j)
+                sum->e[k++] = e[i++];
+            else if(e[i].j > s.e[j].j)
+                sum->e[k++] = s.e[j++];
             else
             {
-                sum.e[i].i = s1.e[i].i;
-                sum.e[i].j = s1.e[i].j;
-                sum.e[k++].x = s1.e[i++].x + s2.e[j++].x;
+                sum->e[i].i = e[i].i;
+                sum->e[i].j = e[i].j;
+                sum->e[k++].x = e[i++].x + s.e[j++].x;
             }
         }
     }
-    sum.num = k;
+    for(;i<num;i++) sum->e[k++] = e[i];
+    for(;j<s.num;j++) sum->e[k++] = s.e[j];
+    sum->num = k;
 
-    return sum;
+    return *sum;
 }
 
 int main()
@@ -108,16 +106,14 @@ int main()
     // int B[7][3] = {{5,6,6}, {2,2,3}, {2,5,5}, {3,3,2}, {3,6,7}, {4,4,9}, {5,1,8}};
 
     Sparse s1, s2, s;
-    cin >> &s1;
-    // s2.create();
-    // s1.display();
+    cin >> &s1 >> &s2;
     cout << s1;
-    // cout << endl;
-    // s2.display();
+    cout << endl;
+    cout << s2;
 
-    // s = s1 + s2;
-    // cout << endl;
-    // s.display();
+    s = s1 + s2;
+    cout << endl;
+    cout << s;
 
     return 0;
 }
