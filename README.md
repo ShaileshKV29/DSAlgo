@@ -9,3 +9,7 @@
 ### Recursion
 
 ##### Recursion happens when a funcitons calls itself over and over again, I have already complted recursion a month ago but currently I'm revising it to Start Dynamic Programming.
+
+### Array ADT
+
+##### 
