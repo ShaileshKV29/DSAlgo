@@ -66,6 +66,35 @@ void insertLast(int x)
     }
 }
 
+void SortedInsert(Node *p, int x)
+{
+    Node *t, *q = nullptr;
+    t = new Node;
+    t->data = x;
+    t->next = nullptr;
+
+    if(first == nullptr)
+        first = t;
+    else
+    {
+        while(p && p->data < x)
+        {
+            q = p;
+            p = p->next;
+        }
+        if(p == first)
+        {
+            t->next = first;
+            first = t;
+        }
+        else
+        {
+            t->next = q->next;
+            q->next = t;
+        }
+    }
+}
+
 void display(Node *p)
 {
     while(p != nullptr)
@@ -169,14 +198,11 @@ Node * search_improved(Node *p, int key)
 
 int main()
 {
-    display(first);
-    cout << endl;
-    insertLast(100);
-    insertLast(200);
-    insertLast(300);
-    insertLast(400);
-    insertLast(500);
-    cout << endl;
+    SortedInsert(first, 35);
+    SortedInsert(first, 25);
+    SortedInsert(first, 45);
+    SortedInsert(first, 0);
+    SortedInsert(first, 50);
     display(first);
 
     return 0;
