@@ -203,8 +203,6 @@ int main()
     SortedInsert(first, 45);
     SortedInsert(first, 0);
     SortedInsert(first, 50);
-
-    
     display(first);
 
     return 0;
