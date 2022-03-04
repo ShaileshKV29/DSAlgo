@@ -91,6 +91,18 @@ class LinkedList
             }
             return max;
         }
+
+        Node * search(int key)
+        {
+            Node *p = first;
+            while(p != nullptr)
+            {
+                if(key == p->data)
+                    return p;
+                p = p->next;
+            }
+            return nullptr;
+        }
 };
 
 int main()
@@ -101,6 +113,8 @@ int main()
     cout << llist.count_nodes() << endl;
     cout << llist.sum_nodes() << endl;
     cout << llist.max() << endl;
+    Node *p = llist.search(7);
+    cout << p->data << " " << p << endl;
 
     return 0;
 }
