@@ -45,13 +45,62 @@ class LinkedList
             }
             cout << endl;
         }
+
+        // void display_recursive()
+        // {
+        //     if(first != nullptr)
+        //     {
+        //         cout << first->data << " ";
+        //         display_recursive();
+        //     }
+        // }
+
+        int count_nodes()
+        {
+            Node *p = first;
+            int count = 0;
+            while(p != nullptr)
+            {
+                count++;
+                p = p->next;
+            }
+            return count;
+        }
+
+        int sum_nodes()
+        {
+            Node *p = first;
+            int sum = 0;
+            while(p != nullptr)
+            {
+                sum += p->data;
+                p = p->next;
+            }
+            return sum;
+        }
+        
+        int max()
+        {
+            Node *p = first;
+            int max = INT32_MIN;
+            while(p != nullptr)
+            {
+                if(p->data > max)
+                    max = p->data;
+                p = p->next;
+            }
+            return max;
+        }
 };
 
 int main()
 {
     int A[5] = {1,3,5,7,9};
-    LinkedList ll(A, 5);
-    ll.display();
+    LinkedList llist(A, 5);
+    llist.display();
+    cout << llist.count_nodes() << endl;
+    cout << llist.sum_nodes() << endl;
+    cout << llist.max() << endl;
 
     return 0;
 }
