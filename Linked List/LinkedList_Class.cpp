@@ -9,6 +9,7 @@ struct Node
 
 class LinkedList
 {
+    int n;
     Node *first = nullptr;
 
     public:
@@ -29,13 +30,28 @@ class LinkedList
                 p->next = t;
                 p = t;
 
-            }        
+            } 
+
+            this->n = n;       
+        }
+
+        void display()
+        {
+            Node *p = first;
+            while(p != nullptr)
+            {
+                cout << p->data << " ";
+                p = p->next;
+            }
+            cout << endl;
         }
 };
 
 int main()
 {
-    
+    int A[5] = {1,3,5,7,9};
+    LinkedList ll(A, 5);
+    ll.display();
 
     return 0;
 }
