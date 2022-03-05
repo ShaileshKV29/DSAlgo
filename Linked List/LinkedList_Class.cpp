@@ -92,8 +92,6 @@ class LinkedList
             return max;
         }
 
-        
-
         Node * search(int key)
         {
             Node *p = first;
