@@ -86,6 +86,40 @@ class LinkedList
             }
         }
 
+        void insertSorted(int key)
+        {
+            Node *t = new Node;
+            Node *p = first;
+            Node *q = nullptr;
+            t->data = key;
+            t->next = nullptr;
+
+            if(first == nullptr)
+            {
+                first = t;
+                this->n++;
+            }
+            else
+            {
+                while(p->data < key)
+                {
+                    q = p;
+                    p = p->next;
+                }
+                if(p == first)
+                {
+                    t->next = first;
+                    first = t;
+                }
+                else
+                {
+                    t->next = q->next;
+                    q->next = t;
+                    this->n++;
+                }
+            }
+        }
+
         void display()
         {
             Node *p = first;
@@ -165,12 +199,14 @@ int main()
     llist.display();
 
     LinkedList elist;
-    elist.display();
     elist.insertLast(10);
     elist.insertLast(20);
     elist.insertLast(30);
     elist.insertLast(40);
     elist.insertLast(50);
+    elist.display();
+    elist.insertSorted(35);
+    elist.insertSorted(5);
     elist.display();
 
     return 0;
