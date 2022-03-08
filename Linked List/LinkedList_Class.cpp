@@ -177,6 +177,22 @@ class LinkedList
             return max;
         }
 
+        bool checkSorted()
+        {
+            Node *p = first;
+            int x = INT32_MIN;
+
+            while(p != nullptr)
+            {
+                if(p->data < x)
+                    return false;
+                
+                x = p->data;
+                p = p->next;
+            }
+            return true;
+        }
+
         Node * search(int key)
         {
             Node *p = first;
@@ -187,6 +203,27 @@ class LinkedList
                 p = p->next;
             }
             return nullptr;
+        }
+
+        void removeDuplicates()
+        {
+            Node *p = first;
+            Node *q = first->next;
+
+            while(q != nullptr)
+            {
+                if(p->data != q->data)
+                {
+                    p = q;
+                    q = q->next;
+                }
+                else
+                {
+                    p->next = q->next;
+                    delete q;
+                    q = p->next;
+                }
+            }
         }
 
         ~LinkedList()
@@ -207,9 +244,9 @@ int main()
 {
     int A[5] = {1,3,5,7,9};
     LinkedList llist(A, 5);
-    llist.display();
-    llist.insert(6, 3);
-    llist.display();
+    // llist.display();
+    // llist.insert(6, 3);
+    // llist.display();
 
     LinkedList elist;
     elist.insertLast(10);
@@ -218,9 +255,15 @@ int main()
     elist.insertLast(40);
     elist.insertLast(50);
     elist.display();
-    elist.insertSorted(35);
-    elist.insertSorted(5);
+    elist.insertSorted(30);
+    elist.insertSorted(30);
     elist.display();
+    elist.removeDuplicates();
+    elist.display();
+    // if(elist.checkSorted())
+    //     cout << "Linked List Sorted" << endl;
+    // else
+    //     cout << "Linked List Not Sorted" << endl;
 
     return 0;
 }
