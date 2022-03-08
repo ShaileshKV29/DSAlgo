@@ -11,8 +11,14 @@ class LinkedList
 {
     int n;
     Node *first = nullptr;
+    Node *last = nullptr;
 
     public:
+
+        LinkedList()
+        {
+            this->n = 0;
+        }
 
         LinkedList(int A[], int n)
         {
@@ -44,6 +50,7 @@ class LinkedList
             {
                 t->next = first;
                 first = t;
+                this->n++;
             }
             else if(pos > 0)
             {
@@ -53,6 +60,29 @@ class LinkedList
 
                 t->next = p->next;
                 p->next = t;
+                this->n++;
+            }
+        }
+
+        void insertLast(int key)
+        {
+            Node *p = new Node;
+            p->data = key;
+            p->next = nullptr;
+            if(first == nullptr)
+            {
+                first = p;
+                last = first;
+            }
+            else if(first == last)
+            {
+                first->next = p;
+                last = p;
+            }
+            else
+            {
+                last->next = p;
+                last = p;
             }
         }
 
@@ -133,6 +163,15 @@ int main()
     llist.display();
     llist.insert(6, 3);
     llist.display();
+
+    LinkedList elist;
+    elist.display();
+    elist.insertLast(10);
+    elist.insertLast(20);
+    elist.insertLast(30);
+    elist.insertLast(40);
+    elist.insertLast(50);
+    elist.display();
 
     return 0;
 }
