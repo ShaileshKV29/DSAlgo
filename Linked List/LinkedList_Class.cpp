@@ -188,6 +188,19 @@ class LinkedList
             }
             return nullptr;
         }
+
+        ~LinkedList()
+        {
+            Node *p = first;
+            Node *q = nullptr;
+
+            while(p != nullptr)
+            {
+                q = p;
+                p = p->next;
+                delete q;
+            }
+        }
 };
 
 int main()
