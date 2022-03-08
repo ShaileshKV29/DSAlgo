@@ -35,6 +35,27 @@ class LinkedList
             this->n = n;       
         }
 
+        void insert(int key, int pos)
+        {
+            Node * t = new Node;
+            t->data = key;
+            t->next = nullptr;
+            if(pos == 0)
+            {
+                t->next = first;
+                first = t;
+            }
+            else if(pos > 0)
+            {
+                Node *p = first;
+                for(int i = 0; i < pos - 1; i++)
+                    p = p->next;
+
+                t->next = p->next;
+                p->next = t;
+            }
+        }
+
         void display()
         {
             Node *p = first;
@@ -110,11 +131,8 @@ int main()
     int A[5] = {1,3,5,7,9};
     LinkedList llist(A, 5);
     llist.display();
-    cout << llist.count_nodes() << endl;
-    cout << llist.sum_nodes() << endl;
-    cout << llist.max() << endl;
-    Node *p = llist.search(7);
-    cout << p->data << " " << p << endl;
+    llist.insert(6, 3);
+    llist.display();
 
     return 0;
 }
