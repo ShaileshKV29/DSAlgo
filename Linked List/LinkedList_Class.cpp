@@ -257,7 +257,6 @@ int main()
     elist.display();
     elist.insertSorted(30);
     elist.insertSorted(30);
-    elist.insertSorted(20);
     elist.display();
     elist.removeDuplicates();
     elist.display();
