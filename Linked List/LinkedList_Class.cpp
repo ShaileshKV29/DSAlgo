@@ -19,6 +19,7 @@ class LinkedList
         {
             this->n = 0;
         }
+        
 
         LinkedList(int A[], int n)
         {
