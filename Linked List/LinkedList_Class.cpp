@@ -42,6 +42,11 @@ class LinkedList
             this->n = n;       
         }
 
+        Node * get_head()
+        {
+            return this->first;
+        }
+
         void insert(int key, int pos)
         {
             Node * t = new Node;
@@ -179,6 +184,19 @@ class LinkedList
             first = q;
         }
 
+        void reverse_revursive(Node *q, Node *p)
+        {
+            if(p)
+            {
+                this->reverse_revursive(p, p->next);
+                p->next = q;
+            }
+            else
+            {
+                this->first = q;
+            }
+        }
+
         int count_nodes()
         {
             Node *p = first;
@@ -289,10 +307,10 @@ int main()
     elist.insertLast(50);
     elist.insertSorted(32);
     elist.insertSorted(34);
+    cout << elist.get_head() << endl;
     elist.display();
-    elist.reverse_using_array();
-    elist.display();
-    elist.reverse_using_sliding_pointers();
+    elist.reverse_revursive(nullptr, elist.get_head());
+    cout << elist.get_head() << endl;
     elist.display();
 
     return 0;
