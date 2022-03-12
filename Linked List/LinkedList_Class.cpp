@@ -163,6 +163,22 @@ class LinkedList
             }
         }
 
+        void reverse_using_sliding_pointers()
+        {
+            Node *p, *q, *r;
+            p = this->first;
+            q = r = nullptr;
+
+            while(p != nullptr)
+            {
+                r = q;
+                q = p;
+                p = p->next;
+                q->next = r;
+            }
+            first = q;
+        }
+
         int count_nodes()
         {
             Node *p = first;
@@ -275,6 +291,8 @@ int main()
     elist.insertSorted(34);
     elist.display();
     elist.reverse_using_array();
+    elist.display();
+    elist.reverse_using_sliding_pointers();
     elist.display();
 
     return 0;
