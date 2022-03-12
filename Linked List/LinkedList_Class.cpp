@@ -141,6 +141,28 @@ class LinkedList
         //     }
         // }
 
+        void reverse_using_array()
+        {
+            Node *p = first;
+            int A[this->n];
+            int i = 0;
+            while(p != nullptr)
+            {
+                A[i] = p->data;
+                p = p->next;
+                i++;
+            }
+
+            p = first;
+            i--;
+            while(p != nullptr)
+            {
+                p->data = A[i];
+                p = p->next;
+                i--;
+            }
+        }
+
         int count_nodes()
         {
             Node *p = first;
@@ -243,28 +265,17 @@ class LinkedList
 
 int main()
 {
-    int A[5] = {1,3,5,7,9};
-    LinkedList llist(A, 5);
-    // llist.display();
-    // llist.insert(6, 3);
-    // llist.display();
-
     LinkedList elist;
     elist.insertLast(10);
     elist.insertLast(20);
     elist.insertLast(30);
     elist.insertLast(40);
     elist.insertLast(50);
+    elist.insertSorted(32);
+    elist.insertSorted(34);
     elist.display();
-    elist.insertSorted(30);
-    elist.insertSorted(30);
+    elist.reverse_using_array();
     elist.display();
-    elist.removeDuplicates();
-    elist.display();
-    // if(elist.checkSorted())
-    //     cout << "Linked List Sorted" << endl;
-    // else
-    //     cout << "Linked List Not Sorted" << endl;
 
     return 0;
 }
