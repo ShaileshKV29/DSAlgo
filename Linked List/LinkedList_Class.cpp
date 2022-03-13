@@ -126,6 +126,17 @@ class LinkedList
             }
         }
 
+        void concatinate(LinkedList l)
+        {
+            Node *p = first;
+            while(p->next != nullptr)
+            {
+                p = p->next;
+            }
+
+            p->next = l.get_head();
+        }
+
         void display()
         {
             Node *p = first;
@@ -299,6 +310,9 @@ class LinkedList
 
 int main()
 {
+    int A[5] = {1,2,3,4,5};
+    LinkedList alist(A, 5);
+
     LinkedList elist;
     elist.insertLast(10);
     elist.insertLast(20);
@@ -307,10 +321,11 @@ int main()
     elist.insertLast(50);
     elist.insertSorted(32);
     elist.insertSorted(34);
-    cout << elist.get_head() << endl;
+
+    alist.display();
     elist.display();
-    elist.reverse_revursive(nullptr, elist.get_head());
-    cout << elist.get_head() << endl;
+
+    elist.concatinate(alist);
     elist.display();
 
     return 0;
