@@ -180,6 +180,23 @@ class LinkedList
                 last->next = s;
         }
 
+        int isLoop()
+        {
+            Node *p, *q;
+            p = q = this->first;
+            do
+            {
+                p = p->next;
+                q = q->next;
+                q = q != nullptr ? q->next : nullptr;
+
+                if(p == q)
+                    return true;
+            }while(p && q);
+
+            return false;
+        }
+
         void display()
         {
             Node *p = first;
@@ -370,6 +387,8 @@ int main()
 
     elist.merge(alist);
     elist.display();
+
+    cout << elist.isLoop();
 
     return 0;
 }
