@@ -137,6 +137,49 @@ class LinkedList
             p->next = l.get_head();
         }
 
+        void merge(LinkedList l)
+        {
+            Node *f = this->first;
+            Node *s = l.get_head();
+            Node *last = nullptr;
+
+            if(f->data < s->data)
+            {
+                this->first = last = f;
+                f = f->next;
+                last->next = nullptr;
+            }
+            else
+            {
+                this->first = last = s;
+                s = s->next;
+                last->next = nullptr;
+            }
+
+            while(f != nullptr && s != nullptr)
+            {
+                if(f->data < s->data)
+                {
+                    last->next = f;
+                    last = f;
+                    f = f->next;
+                    last->next = nullptr;
+                }
+                else
+                {
+                    last->next = s;
+                    last = s;
+                    s = s->next;
+                    last->next = nullptr;
+                }
+            }
+
+            if(f != nullptr)
+                last->next = f;
+            else
+                last->next = s;
+        }
+
         void display()
         {
             Node *p = first;
@@ -310,7 +353,7 @@ class LinkedList
 
 int main()
 {
-    int A[5] = {1,2,3,4,5};
+    int A[5] = {4,5,15,25,31};
     LinkedList alist(A, 5);
 
     LinkedList elist;
@@ -325,7 +368,7 @@ int main()
     alist.display();
     elist.display();
 
-    elist.concatinate(alist);
+    elist.merge(alist);
     elist.display();
 
     return 0;
