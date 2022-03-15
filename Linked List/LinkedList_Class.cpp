@@ -388,6 +388,8 @@ int main()
     elist.merge(alist);
     elist.display();
 
+    
+
     cout << elist.isLoop();
 
     return 0;
