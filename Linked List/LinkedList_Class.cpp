@@ -141,43 +141,48 @@ class LinkedList
         {
             Node *f = this->first;
             Node *s = l.get_head();
-            Node *last = nullptr;
+            Node *lastNode = nullptr;
 
             if(f->data < s->data)
             {
-                this->first = last = f;
+                this->first = lastNode = f;
                 f = f->next;
-                last->next = nullptr;
+                lastNode->next = nullptr;
             }
             else
             {
-                this->first = last = s;
+                this->first = lastNode = s;
                 s = s->next;
-                last->next = nullptr;
+                lastNode->next = nullptr;
             }
 
             while(f != nullptr && s != nullptr)
             {
                 if(f->data < s->data)
                 {
-                    last->next = f;
-                    last = f;
+                    lastNode->next = f;
+                    lastNode = f;
                     f = f->next;
-                    last->next = nullptr;
+                    lastNode->next = nullptr;
                 }
                 else
                 {
-                    last->next = s;
-                    last = s;
+                    lastNode->next = s;
+                    lastNode = s;
                     s = s->next;
-                    last->next = nullptr;
+                    lastNode->next = nullptr;
                 }
+
+                cout << "Inside While : ";
             }
+                cout << "Outside While : ";
 
             if(f != nullptr)
-                last->next = f;
+                lastNode->next = f;
             else
-                last->next = s;
+                lastNode->next = s;
+            
+            cout << "End of Function : ";
         }
 
         int isLoop()
@@ -388,7 +393,7 @@ int main()
     elist.merge(alist);
     elist.display();
 
-    cout << elist.isLoop();
+    // cout << elist.isLoop();
 
     return 0;
 }
