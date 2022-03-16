@@ -42,6 +42,42 @@ class CircularLinkedList
             this->length = n;
         }
 
+        void insert(int pos, int x)
+        {
+            Node *t = new Node;
+            t->data = x;
+            int i;
+
+            if(pos == 0)
+            {
+                if(head == nullptr)
+                {
+                    head = t;
+                    head->next = head;
+                }
+                else
+                {
+                    t->next = head;
+                    Node *p = head;
+                    while(p->next != head)
+                        p = p->next;
+
+                    p->next = t;
+                }
+            }
+            else
+            {
+                Node *p = head;
+                for(i = 0; i < pos - 1; i++)
+                    p = p->next;
+
+                t->next = p->next;
+                p->next = t;
+            }
+
+            this->length++;
+        }
+
         void display()
         {
             Node *p = this->head;
@@ -50,6 +86,8 @@ class CircularLinkedList
                 p = p->next;
             }
             while(p != head);
+
+            cout << endl;
         }
 };
 
@@ -57,6 +95,8 @@ int main()
 {
     int A[5] = {1,2,3,4,5};
     CircularLinkedList clist(A, 5);
+    clist.display();
+    clist.insert(9, 10);
     clist.display();
 
     return 0;
