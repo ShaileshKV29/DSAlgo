@@ -83,7 +83,7 @@ class CircularLinkedList
             Node *p, *q;
             int x;
 
-            if(pos == 1)
+            if(pos == 1 || pos % this->length == 1)
             {
                 p = head;
                 while(p->next != head)
@@ -133,12 +133,12 @@ class CircularLinkedList
 
 int main()
 {
-    int A[5] = {1,2,3,4,5};
-    CircularLinkedList clist(A, 5);
+    int A[6] = {1,2,3,4,5,6};
+    CircularLinkedList clist(A, 6);
     clist.display();
 
     int element;
-    element = clist.deleteNode(1);
+    element = clist.deleteNode(13);
     cout << "Deleted Element is: " << element << endl;
     clist.display();
 
