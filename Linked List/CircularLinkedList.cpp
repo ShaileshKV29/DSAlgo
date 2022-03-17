@@ -78,6 +78,46 @@ class CircularLinkedList
             this->length++;
         }
 
+        int deleteNode(int pos)
+        {
+            Node *p, *q;
+            int x;
+
+            if(pos == 1)
+            {
+                p = head;
+                while(p->next != head)
+                    p = p->next;
+
+                x = head->data;
+                if(p == head)
+                {
+                    delete head;
+                    head = nullptr;
+                }
+                else
+                {
+                    p->next = head->next;
+                    delete head;
+                    head = p->next;
+                }
+            }
+            else
+            {
+                p = head;
+                for(int i = 0; i < pos - 2; i++)
+                    p = p->next;
+                
+                q = p->next;
+                x = q->data;
+                p->next = q->next;
+                delete q;
+
+            }
+
+            return x;
+        }
+
         void display()
         {
             Node *p = this->head;
@@ -96,7 +136,10 @@ int main()
     int A[5] = {1,2,3,4,5};
     CircularLinkedList clist(A, 5);
     clist.display();
-    clist.insert(9, 10);
+
+    int element;
+    element = clist.deleteNode(1);
+    cout << "Deleted Element is: " << element << endl;
     clist.display();
 
     return 0;
