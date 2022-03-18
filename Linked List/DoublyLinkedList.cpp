@@ -72,6 +72,7 @@ int main()
 {
     int A[5] = {5,4,3,2,1};
 
+
     DoublyLinkedList dlist(A, 5);
     dlist.display();
     dlist.display_reverse();
