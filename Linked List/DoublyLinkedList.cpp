@@ -45,6 +45,44 @@ class DoublyLinkedList
             this->length = n;
         }
 
+        void insert(int pos, int data)
+        {
+            if(pos < 0 || pos > this->length)
+                return;
+
+            Node *t = new Node;
+            t->data = data;
+            t->prev = nullptr;
+            t->next = nullptr;
+
+            if(pos == 0)
+            {
+                if(this->first == nullptr)
+                    this->first = t;
+                else
+                {
+                    t->next = this->first;
+                    first->prev = t;
+                    first = t;
+                }
+                this->length++;
+            }
+            else
+            {
+                Node *p = this->first;
+                for(int i = 1; i < pos; i++)
+                    p = p->next;
+                
+                t->prev = p;
+                t->next = p->next;
+                p->next = t;
+                if(t->next)
+                    t->next->prev = t;
+                
+                this->length++;
+            }
+        }
+
         void display()
         {
             Node *p = first;
@@ -75,6 +113,7 @@ int main()
 
     DoublyLinkedList dlist(A, 5);
     dlist.display();
-    dlist.display_reverse();
+    dlist.insert(3, 22);
+    dlist.display();
     return 0;
 }
