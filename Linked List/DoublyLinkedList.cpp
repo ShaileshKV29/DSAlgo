@@ -83,6 +83,40 @@ class DoublyLinkedList
             }
         }
 
+        int deleteNode(int node)
+        {
+            int x;
+            if(node == 1)
+            {
+                if(first == nullptr)
+                    return 0;
+                else
+                {
+                    Node *p = first;
+                    x = p->data;
+                    first = first->next;
+                    delete p;
+                    if(first)
+                        first->prev = nullptr;
+                    this->length--;
+                }
+            }
+            else
+            {
+                Node *p = first;
+                for(int i = 1; i < node; i++)
+                    p = p->next;
+                
+                p->prev->next = p->next;
+                if(p->next)
+                    p->next->prev = p->prev;
+                x = p->data;
+                delete p;
+                this->length--;
+            }
+            return x;
+        }
+
         void display()
         {
             Node *p = first;
@@ -115,5 +149,9 @@ int main()
     dlist.display();
     dlist.insert(3, 22);
     dlist.display();
+    int n = dlist.deleteNode(1);
+    dlist.display();
+    cout << "Deleted Node: " << n << endl;
+
     return 0;
 }
