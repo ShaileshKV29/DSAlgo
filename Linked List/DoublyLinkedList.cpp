@@ -117,6 +117,22 @@ class DoublyLinkedList
             return x;
         }
 
+        void reverse_list()
+        {
+            Node *p = first;
+            Node *temp;
+            while (p != nullptr)
+            {
+                temp = p->next;
+                p->next = p->prev;
+                p->prev = temp;
+                p = p->prev;
+                if(p != nullptr && p->next == nullptr)
+                    first = p;
+            }
+            
+        }
+
         void display()
         {
             Node *p = first;
@@ -149,9 +165,8 @@ int main()
     dlist.display();
     dlist.insert(3, 22);
     dlist.display();
-    int n = dlist.deleteNode(1);
+    dlist.reverse_list();
     dlist.display();
-    cout << "Deleted Node: " << n << endl;
 
     return 0;
 }
