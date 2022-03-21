@@ -129,7 +129,6 @@ class DoublyLinkedList
                 p = p->prev;
                 if(p != nullptr && p->next == nullptr)
                     first = p;
-                    
             }
         }
 
