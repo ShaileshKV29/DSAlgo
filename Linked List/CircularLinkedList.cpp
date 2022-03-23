@@ -15,7 +15,6 @@ class CircularLinkedList
         int length;
 
     public:
-    
         CircularLinkedList()
         {
             this->head = nullptr;
