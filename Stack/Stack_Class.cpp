@@ -33,6 +33,22 @@ class Stack
                 cout << s[i] << endl;
             }
         }
+
+        bool isEmpty()
+        {
+            if(this->Top == -1)
+                return true;
+            else
+                return false;
+        }
+
+        bool isFull()
+        {
+            if(this->Top == this->size - 1)
+                return true;
+            else
+                return false;
+        }
 };
 
 int main()
@@ -40,6 +56,8 @@ int main()
     int A[5] = {1,2,3,4,5};
     Stack st(5, A);
     st.display();
+    cout << st.isEmpty() << endl;
+    cout << st.isFull() << endl;
 
     return 0;
 }
