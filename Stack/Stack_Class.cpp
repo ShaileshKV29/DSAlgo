@@ -25,12 +25,21 @@ class Stack
             }
             this->Top = this->size - 1;
         }
+
+        void display()
+        {
+            for(int i = this->size - 1; i >= 0; i--)
+            {
+                cout << s[i] << endl;
+            }
+        }
 };
 
 int main()
 {
     int A[5] = {1,2,3,4,5};
     Stack st(5, A);
+    st.display();
 
     return 0;
 }
