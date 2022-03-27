@@ -87,6 +87,14 @@ class Stack
 
             return x;
         }
+
+        int stackTop()
+        {
+            if(this->isEmpty())
+                return -1;
+            else
+                return s[Top];
+        }
 };
 
 int main()
@@ -97,14 +105,9 @@ int main()
     st.push(20);
     st.push(30);
     st.push(40);
-    st.push(50);
+    // st.push(50);
 
-    cout << st.peek(1) << endl;
-    cout << st.peek(2) << endl;
-    cout << st.peek(3) << endl;
-    cout << st.peek(4) << endl;
-    cout << st.peek(5) << endl;
-    cout << st.peek(6) << endl;
+    cout << st.stackTop() << endl;
 
     return 0;
 }
