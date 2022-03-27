@@ -74,6 +74,19 @@ class Stack
                 return x;
             }
         }
+
+        int peek(int pos)
+        {
+            int index = Top - pos + 1;
+            int x = -1;
+
+            if(index < 0 || index > size - 1)
+                printf("Invalid Position");
+            else
+                x = s[index];
+
+            return x;
+        }
 };
 
 int main()
@@ -85,13 +98,13 @@ int main()
     st.push(30);
     st.push(40);
     st.push(50);
-    st.pop();
-    st.pop();
-    st.pop();
-    st.pop();
-    st.pop();
-    int deletedElement = st.pop();
-    cout << deletedElement;
+
+    cout << st.peek(1) << endl;
+    cout << st.peek(2) << endl;
+    cout << st.peek(3) << endl;
+    cout << st.peek(4) << endl;
+    cout << st.peek(5) << endl;
+    cout << st.peek(6) << endl;
 
     return 0;
 }
