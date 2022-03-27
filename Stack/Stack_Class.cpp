@@ -60,6 +60,20 @@ class Stack
                 this->s[this->Top] = x;
             }
         }
+
+        int pop()
+        {
+            if(this->isEmpty())
+                return -1;
+            else
+            {
+                int x = s[Top];
+                s[Top] = 0;
+                Top--;
+
+                return x;
+            }
+        }
 };
 
 int main()
@@ -71,8 +85,13 @@ int main()
     st.push(30);
     st.push(40);
     st.push(50);
-    st.display();
-    st.push(60);
+    st.pop();
+    st.pop();
+    st.pop();
+    st.pop();
+    st.pop();
+    int deletedElement = st.pop();
+    cout << deletedElement;
 
     return 0;
 }
