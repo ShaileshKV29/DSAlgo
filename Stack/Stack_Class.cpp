@@ -12,7 +12,7 @@ class Stack
         {
             this->size = size;
             this->s = new int[this->size];
-            int Top = -1;
+            this->Top = -1;
         }
 
         Stack(int size, int A[])
@@ -28,7 +28,7 @@ class Stack
 
         void display()
         {
-            for(int i = this->size - 1; i >= 0; i--)
+            for(int i = this->Top; i >= 0; i--)
             {
                 cout << s[i] << endl;
             }
@@ -49,15 +49,30 @@ class Stack
             else
                 return false;
         }
+
+        void push(int x)
+        {
+            if(this->isFull())
+                printf("Stack Overflow");
+            else
+            {
+                this->Top++;
+                this->s[this->Top] = x;
+            }
+        }
 };
 
 int main()
 {
-    int A[5] = {1,2,3,4,5};
-    Stack st(5, A);
+    // int A[5] = {1,2,3,4,5};
+    Stack st(5);
+    st.push(10);
+    st.push(20);
+    st.push(30);
+    st.push(40);
+    st.push(50);
     st.display();
-    cout << st.isEmpty() << endl;
-    cout << st.isFull() << endl;
+    st.push(60);
 
     return 0;
 }
