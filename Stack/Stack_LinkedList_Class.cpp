@@ -43,6 +43,23 @@ class StackLinkedList
             }
         }
 
+        int pop()
+        {
+            int x = -1;
+            if(Top == nullptr)
+                cout << "Stack is Empty" << endl;
+            else
+            {
+                Node *p = Top;
+                Top = Top->next;
+                x = p->data;
+                delete p;
+                this->size--;
+            }
+
+            return x;
+        }
+
         void display()
         {
             Node *p = Top;
@@ -61,6 +78,8 @@ int main()
     st.push(30);
     st.push(40);
     st.push(50);
+    st.pop();
+    st.pop();
     st.display();
 
     return 0;
