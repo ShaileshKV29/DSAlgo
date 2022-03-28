@@ -75,6 +75,26 @@ class StackLinkedList
             return -1;
         }
 
+        int stackTop()
+        {
+            if(Top)
+                return Top->data;
+            return -1;
+        }
+
+        int isEmpty()
+        {
+            return Top ? 0 : 1;
+        }
+
+        int isFull()
+        {
+            Node *t = new Node;
+            int r = t ? 1 : 0;
+            free(t);
+            return r;
+        }
+
         void display()
         {
             Node *p = Top;
@@ -94,11 +114,9 @@ int main()
     st.push(40);
     st.push(50);
     // st.display();
-    cout << st.peek(1) << endl;
-    cout << st.peek(2) << endl;
-    cout << st.peek(3) << endl;
-    cout << st.peek(4) << endl;
-    cout << st.peek(5) << endl;
+    cout << st.stackTop() << endl;
+    cout << st.isEmpty() << endl;
+    cout << st.isFull() << endl;
 
     return 0;
 }
