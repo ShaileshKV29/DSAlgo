@@ -10,10 +10,16 @@ class Node
 
 class StackLinkedList
 {
-    Node *Top = nullptr;
-    int size = 0;
+    Node *Top;
+    int size;
 
     public:
+
+        StackLinkedList()
+        {
+            this->Top = nullptr;
+            this->size = 0;
+        }
 
         StackLinkedList(int x)
         {
