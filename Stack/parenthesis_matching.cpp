@@ -111,10 +111,26 @@ class Stack
             this->Top = -1;
             for(auto x: str)
             {
-                if(x == '(')
+                if(x == '(' || x == '{' || x == '[')
                     this->push(x);
-                else if(x == ')')
-                    this->pop();
+                else if(x == ')' || x == '}' || x == ']')
+                {
+                    int k = s[Top];
+                    if(x < 50)
+                    {
+                        if(k + 1 == x)
+                            this->pop();
+                        else
+                            return 0;
+                    }
+                    else
+                    {
+                        if(k + 2 == x)
+                            this->pop();
+                        else
+                            return 0;
+                    }
+                }
             }
 
             if(this->isEmpty())
@@ -131,7 +147,7 @@ int main()
     Stack <char>st;
 
     // st.push(10);
-    int result = st.parenthesis_matching("((a+b)*(c-d))");
+    int result = st.parenthesis_matching("{[(a+b)*(c-d)]}[]");
     
     if(result)
         cout << "Parenthesis Matched" << endl;
