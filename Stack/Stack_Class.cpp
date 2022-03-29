@@ -1,24 +1,24 @@
 #include<iostream>
 using namespace std;
-
+template <class T>
 class Stack
 {
     public:
         int size;
         int Top;
-        int *s;
+        T *s;
 
         Stack(int size)
         {
             this->size = size;
-            this->s = new int[this->size];
+            this->s = new T[this->size];
             this->Top = -1;
         }
 
-        Stack(int size, int A[])
+        Stack(int size, T A[])
         {
             this->size = size;
-            this->s = new int[this->size];
+            this->s = new T[this->size];
             for(int i = 0; i < this->size; i++)
             {
                 s[i] = A[i];
@@ -50,7 +50,7 @@ class Stack
                 return false;
         }
 
-        void push(int x)
+        void push(T x)
         {
             if(this->isFull())
                 printf("Stack Overflow");
@@ -61,13 +61,13 @@ class Stack
             }
         }
 
-        int pop()
+        T pop()
         {
             if(this->isEmpty())
                 return -1;
             else
             {
-                int x = s[Top];
+                T x = s[Top];
                 s[Top] = 0;
                 Top--;
 
@@ -75,20 +75,23 @@ class Stack
             }
         }
 
-        int peek(int pos)
+        T peek(int pos)
         {
             int index = Top - pos + 1;
-            int x = -1;
 
             if(index < 0 || index > size - 1)
+            {
                 printf("Invalid Position");
+                return -1;
+            }
             else
-                x = s[index];
-
-            return x;
+            {
+                T x = s[index];
+                return x;
+            }
         }
 
-        int stackTop()
+        T stackTop()
         {
             if(this->isEmpty())
                 return -1;
@@ -100,14 +103,12 @@ class Stack
 int main()
 {
     // int A[5] = {1,2,3,4,5};
-    Stack st(5);
-    st.push(10);
-    st.push(20);
-    st.push(30);
-    st.push(40);
+    char A[5] = {'a','b','c','d','e'};
+    Stack <char>st(5, A);
     // st.push(50);
-
-    cout << st.stackTop() << endl;
+    st.display();
+    // cout << st.pop() << endl;
+    // cout << st.stackTop() << endl;
 
     return 0;
 }
