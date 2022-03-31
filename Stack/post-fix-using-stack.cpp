@@ -107,10 +107,29 @@ class Stack
             
             return -1;
         }
+
+        void display()
+        {
+            if(this->isEmpty())
+                cout << "Stack is Empty";
+            else
+            {
+                for(int i = Top; i >= 0; i--)
+                {
+                    cout << s[i] << endl;
+                }
+            }
+        }
 };
 
 int main()
 {
+    char A[5] = {'a', 'b', 'c', 'd', 'e'};
+
+    Stack<char> st(A);
+    // st.display();
+    cout << st.stackTop() << endl;
+    // cout << sizeof(A);
     
 
     return 0;
