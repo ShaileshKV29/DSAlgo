@@ -139,7 +139,10 @@ class Stack
             }
         }
 
-        void infix_to_postfix();        
+        void infix_to_postfix()
+        {
+            
+        }        
 
         void display()
         {
