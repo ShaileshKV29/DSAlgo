@@ -1,13 +1,12 @@
 #include<iostream>
 using namespace std;
 
-template <class T>
 class Stack
 {
     private:
         int size;
         int Top;
-        T *s;
+        char *s;
     
     public:
         Stack()
@@ -20,13 +19,13 @@ class Stack
         {
             size = stack_size;
             Top = -1;
-            s = new T[size];
+            s = new char[size];
         }
 
-        Stack(T arr[])
+        Stack(char arr[])
         {
             this->size = sizeof(arr)/sizeof(arr[0]);
-            s = new T[size];
+            s = new char[size];
             Top = -1;
 
             for(int i = 0; i < size; i++)
@@ -51,7 +50,7 @@ class Stack
                 return 0;
         }
 
-        void push(T x)
+        void push(char x)
         {
             if(this->isFull())
                 cout << "Stack Overflow";
@@ -62,9 +61,9 @@ class Stack
             }
         }
 
-        T pop()
+        char pop()
         {
-            T x = -1;
+            char x;
             if(this->isEmpty())
                 cout << "Stack is Empty";
             else
@@ -77,7 +76,7 @@ class Stack
             return x;
         }
 
-        T peek(int pos)
+        char peek(int pos)
         {
             if(this->isEmpty())
             {
@@ -93,26 +92,27 @@ class Stack
             else
             {
                 int index = Top - pos + 1;
-                T x = s[index];
+                char x = s[index];
                 return x;
             }
         }
 
-        T stackTop()
+        char stackTop()
         {
+                // cout << "Stack is Empty";
             if(this->isEmpty())
-                cout << "Stack is Empty";
+                return '0';
             else
                 return s[Top];
             
-            return -1;
+            return '0';
         }
 
         int parenthesis_matching(string str)
         {
             int str_size = sizeof(str)/sizeof(str[0]);
             this->size = str_size + 1;
-            this->s = new T[str_size + 1];
+            this->s = new char[str_size + 1];
             this->Top = -1;
             for(auto x: str)
             {
@@ -139,9 +139,45 @@ class Stack
             }
         }
 
-        void infix_to_postfix(string exp)
+        int isOperand(char x)
         {
+            if(x == '+' || x == '-' || x == '*' || x == '/')
+                return 0;
+            else 
+                return 1;
+        }
 
+        int precedence(char x)
+        {
+            if(x == '+' || x == '-')
+                return 1;
+            else if(x == '*' || x == '/')
+                return 2;
+
+            return 0;
+        }
+
+        string infix_to_postfix(string exp)
+        {
+            string postfix = "";
+            int i = 0;
+            while(exp[i] != '\0')
+            {
+                if(this->isOperand(exp[i]))
+                    postfix += exp[i++];
+                else
+                {
+                    if(precedence(exp[i]) > precedence(stackTop()))
+                        push(exp[i++]);
+                    else 
+                        postfix += pop();
+                }
+            }
+            
+            while(!isEmpty())
+                postfix += pop();
+
+            return postfix;
         }        
 
         void display()
@@ -160,13 +196,11 @@ class Stack
 
 int main()
 {
-    char A[5] = {'a', 'b', 'c', 'd', 'e'};
+    string infix = "a+b*c-d/e";
 
-    Stack<char> st(A);
-    // st.display();
-    cout << st.stackTop() << endl;
-    // cout << sizeof(A);
-    
+    Stack st(infix.size());
+    string postfix = st.infix_to_postfix(infix);
+    cout << postfix;
 
     return 0;
 }
