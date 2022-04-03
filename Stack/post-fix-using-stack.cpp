@@ -157,6 +157,7 @@ class Stack
             return 0;
         }
 
+        // I will come back to this topic
         string infix_to_postfix(string exp)
         {
             string postfix = "";
@@ -173,7 +174,7 @@ class Stack
                         postfix += pop();
                 }
             }
-            
+
             while(!isEmpty())
                 postfix += pop();
 
