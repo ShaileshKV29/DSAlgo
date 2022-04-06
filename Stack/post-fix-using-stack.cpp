@@ -197,7 +197,7 @@ class Stack
 
 int main()
 {
-    string infix = "a+b*c-d/e";
+    string infix = "a+b*c-d/e+2";
 
     Stack st(infix.size());
     string postfix = st.infix_to_postfix(infix);
