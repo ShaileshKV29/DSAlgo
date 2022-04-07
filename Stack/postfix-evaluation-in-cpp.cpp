@@ -187,15 +187,11 @@ class Stack
             for(int i = 0; postfix[i] != '\0'; i++)
             {
                 if(postfix[i] != '+' && postfix[i] != '-' && postfix[i] != '*' && postfix[i] != '/')
-                    this->push(postfix[i]);
+                    this->push(postfix[i] - 48);
                 else
                 {
                     x2 = (int)pop();
                     x1 = (int)pop();
-                    if(x2 >= 48)
-                        x2 -= 48;
-                    if(x1 >= 48)
-                        x1 -= 48;
                     if(postfix[i] == '+')
                         r = x1 + x2;
                     else if(postfix[i] == '-')
@@ -228,7 +224,7 @@ class Stack
 
 int main()
 {
-    string infix = "3*5+6/2-4";
+    string infix = "9*8+6/2-4";
 
     Stack st(infix.size());
     string postfix = st.infix_to_postfix(infix);
