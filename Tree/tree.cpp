@@ -12,7 +12,9 @@ class Node
 
 class Tree
 {
+    Node *root;
     public:
+        Tree(){root = nullptr;}
 
         void create_tree()
         {
@@ -21,7 +23,7 @@ class Tree
             queue<Node *> q;
             cout << "Enter root value: ";
             cin >> x;
-            Node *root = new Node;
+            root = new Node;
             root->data = x;
             root->lchild = nullptr;
             root->rchild = nullptr;
@@ -59,12 +61,51 @@ class Tree
                 }
             }
         }
+
+        void preorder(){preorder(root);}
+        void postorder(){postorder(root);}
+        void inorder(){inorder(root);}
+
+        void preorder(Node *p)
+        {
+            if(p)
+            {
+                cout << p->data << " ";
+                preorder(p->lchild);
+                preorder(p->rchild);
+            }
+        }
+
+        void postorder(Node *p)
+        {
+            if(p)
+            {
+                postorder(p->lchild);
+                postorder(p->rchild);
+                cout << p->data << " ";
+            }
+        }
+
+        void inorder(Node *p)
+        {
+            if(p)
+            {
+                inorder(p->lchild);
+                cout << p->data << " ";
+                inorder(p->rchild);
+            }
+        }
 };
 
 int main()
 {
     Tree tree;
     tree.create_tree();
+    tree.preorder();
+    cout << endl;
+    tree.postorder();
+    cout << endl;
+    tree.inorder();
 
     return 0;
 }
