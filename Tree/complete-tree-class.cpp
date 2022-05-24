@@ -89,6 +89,22 @@ class Tree
             return 0;
         }
 
+        int mystery_function(){return mystery_function(root);}
+        int mystery_function(Node *p)
+        {
+            int x,y;
+            if(p)
+            {
+                x = mystery_function(p->lchild);
+                y = mystery_function(p->rchild);
+                if(x > y)
+                    return x + 1;
+                else
+                    return y + 1;
+            }
+            return 0;
+        }
+
         void preorder(){preorder(root);}
         void postorder(){postorder(root);}
         void inorder(){inorder(root);}
@@ -200,6 +216,7 @@ int main()
     tree.preorder();
     cout << endl;
     cout << tree.sum_nodes() << endl;
+    cout << tree.mystery_function() << endl;
 
     return 0;
 }
