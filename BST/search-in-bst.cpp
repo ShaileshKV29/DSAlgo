@@ -62,6 +62,51 @@ class BST
                 }
             }
         }
+
+        void insert_node(int x)
+        {
+            Node *t = root;
+            Node *r = nullptr;
+            Node *p;
+
+            if(this->root == nullptr)
+            {
+                p = new Node(x);
+                root = p;
+            }
+
+            while(t != nullptr)
+            {
+                r = t;
+                if(x < t->data)
+                    t = t->lchild;
+                else if(x > t->data)
+                    t = t->rchild;
+                else
+                    return;
+            }
+
+            p = new Node(x);
+            if(x < r->data)
+                r->lchild = p;
+            else if(x > r->data)
+                r->rchild = p;
+        }
+
+        void display()
+        {
+            display(this->root);
+        }
+
+        void display(Node *p)
+        {
+            if(p != nullptr)
+            {
+                display(p->lchild);
+                cout << p->data;
+                display(p->rchild);
+            }
+        }
 };
 
 
@@ -69,7 +114,7 @@ class BST
 int main()
 {
     BST bst;
-    bst.create_tree();   
-
+    bst.insert_node(20);  
+    bst.display();
     return 0;
 }
