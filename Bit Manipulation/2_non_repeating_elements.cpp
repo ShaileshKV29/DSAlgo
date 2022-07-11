@@ -30,5 +30,7 @@ int main()
     cout << res << endl;
     cout << (res^temp2) << endl;
 
+    cout << (5^5^5) << endl;
+
     return 0;
 }
