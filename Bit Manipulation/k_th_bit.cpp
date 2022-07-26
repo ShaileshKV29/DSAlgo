@@ -7,5 +7,4 @@ int main()
     a = a << 1;
     cout << a;
     return 0;
-    
 }
