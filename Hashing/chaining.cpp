@@ -3,7 +3,6 @@ using namespace std;
 
 class Hashing
 {
-    
 };
 
 int main()
