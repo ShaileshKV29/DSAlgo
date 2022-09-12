@@ -13,13 +13,13 @@ int main()
     int n = 8;
     for(int i = 0; i < n; i++)
     {
-        if(m[str[i]])
-            m[str[i]]++;
-        else
-            m[str[i]] = 1;  
+        m[str[i]]++;
     }
 
-    cout << m["One"];
+    for(pair<string, int> x: m)
+    {
+        cout << x.first << "    " << x.second << endl;
+    }
 
     return 0;
 }

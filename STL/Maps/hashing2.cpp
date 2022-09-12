@@ -10,10 +10,7 @@ int main()
 
     for(int i = 0; i < n; i++)
     {
-        if(m[arr[i]])
-            m[arr[i]]++;
-        else
-            m[arr[i]] = 1;
+        m[arr[i]]++;
     }
 
     for(auto x: m)
