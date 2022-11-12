@@ -121,7 +121,6 @@ class Tree
             queue<Node *> q;
             q.push(root);
             q.push(nullptr);
-
             int sum = 0;
             int max_sum = 0;
             while(!q.empty())
@@ -131,9 +130,13 @@ class Tree
 
                 if(p == nullptr)
                 {
+
                     if(sum > max_sum)
                         max_sum = sum;
                     sum = 0;
+                    if(q.empty())
+                        break;
+                    q.push(nullptr);
                 }
                 else
                 {
@@ -160,7 +163,7 @@ int main()
     cout << endl;
     tree.postOrder();
     cout << endl;
-    tree.maxLevel();
+    cout << tree.maxLevel();
 
     return 0;
 }
