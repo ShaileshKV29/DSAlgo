@@ -188,7 +188,7 @@ int main()
     cout << endl;
     tree.postOrder();
     cout << endl;
-    cout << tree.maxLevel();
+    cout << tree.oneSiblingCount();
 
     return 0;
 }
