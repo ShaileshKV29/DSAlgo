@@ -202,9 +202,38 @@ class Tree
             spiralOrderRec(root);
         }
 
+        void printGivenLevel(Node *p, int level, bool itr)
+        {
+            if(p == nullptr)
+                return;
+            if(level == 1)
+                cout << p->data << " ";
+            else if(level > 1)
+            {
+                if(itr)
+                {
+                    printGivenLevel(p->left, level - 1, itr);
+                    printGivenLevel(p->right, level - 1, itr);
+                }
+                else
+                {
+                    printGivenLevel(p->right, level-1, itr);
+                    printGivenLevel(p->left, level-1, itr);
+                }
+            }
+        }
+
         void spiralOrderRec(Node * p)
         {
             int h = height();
+            bool itr = false;
+            int i;
+
+            for(int i = 1; i <= h; i++)
+            {
+                printGivenLevel(p, i, itr);
+                itr = !itr;
+            }
         }
 
 };
@@ -222,6 +251,9 @@ int main()
     tree.reverseOrder();
     cout << endl;
     cout << tree.height();
+    cout << endl;
+    tree.spiralOrder();
+
 
     return 0;
 }
