@@ -53,6 +53,23 @@ class Tree
             }
         }
 
+        int size()
+        {
+            return size(root);
+        }
+
+        int size(Node *p)
+        {
+            if(p)
+            {
+                int left = size(p->left);
+                int right = size(p->right);
+                return left + 1 + right;
+            }
+
+            return 0;
+        }
+
         // void preOrder()
         // {
         //     preOrderRev(root);
@@ -242,6 +259,8 @@ int main()
         cout << "Element Found" << endl;
     else
         cout << "Element Not Found" << endl;
+
+    cout << tree.size() << endl;
 
     return 0;
 }
