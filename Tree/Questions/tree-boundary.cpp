@@ -379,7 +379,7 @@ class Tree
             printLeft();
             printLeaf();
             cout << endl;
-            printRight(root);
+            printRight(root->right);
         }
 
 };
